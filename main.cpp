@@ -33,6 +33,9 @@ int main(){
     // std::cout << "*p_number " << *p_number << std::endl;
 
 
+
+    /*
+
     // Use dynamic heap memory instead of stack memory
     int *p_number{nullptr};
     p_number = new int;
@@ -47,6 +50,35 @@ int main(){
     *p_number = 45;
     std::cout << "Done writing! " << *p_number << std::endl;
 
+    */
+
+
+    // dynamically allocated array   
+    const size_t size{10};
+    double *p_salaries { new double[size] };  // salary array will contain garbage value
+    int *p_student{ new(std::nothrow) int[size] }; // all value initialized to 0
+    double *p_scores{ new(std::nothrow) double[size]{1,2,3,4,5} }; // Allocating memory space for an array of size double
+                                                                    // vars. First 5 will be initialiate with 
+                                                                    // 1,2,3,4,5 and the rest will be 0
+    
+    //nullptr check and use the allocated array
+    if(p_scores){
+        std::cout << "Size of scores (it's is a regular pointer) : " << sizeof(p_scores) << std::endl;
+        std::cout << "Successfully allocated memory for scroll" << std::endl;
+        for(size_t i{}; i < size; i++){
+            std::cout << "Value: " << p_scores[i] << " : " << *(p_scores + i) << std::endl;
+        }
+    }
+
+
+    delete[] p_salaries;
+    p_salaries = nullptr;
+
+    delete[] p_student;
+    p_student = nullptr;
+
+    delete[] p_scores;
+    p_scores = nullptr;
     
     return 0;
 }
