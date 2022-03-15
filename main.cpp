@@ -53,6 +53,11 @@ int main(){
     */
 
 
+
+
+
+    /*
+
     // dynamically allocated array   
     const size_t size{10};
     double *p_salaries { new double[size] };  // salary array will contain garbage value
@@ -79,6 +84,26 @@ int main(){
 
     delete[] p_scores;
     p_scores = nullptr;
+
+
+    // static array vs dynamic array
+
+    std::cout << "=====================================================" << std::endl;
+    int scores[10]{1,2,3,4,5,6,7,8,9,0}; // live on stack
+
+    std::cout << "Score size " << std::size(scores) << std::endl;
+    for(auto s : scores){
+        std::cout << "value : " << s << std::endl;
+    }
+
+
+    int *p_scores1 = new int[10]{1,2,3,4,5,6,7,8,9,0};
+    std::cout << "p_scores1 size " << std::size(p_scores1) << std::endl;
+
+
+    */
+
+   
     
     return 0;
 }
