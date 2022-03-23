@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
+#include "another_file.cpp"
 #define string std::string
-
 
 
 int main(){
@@ -148,9 +148,16 @@ int main(){
 
 
 
-    string string1 = "fdsafdsa";
-    string *p_string2 = &string1;
-    std::cout << string1 << " memory address " << p_string2 << " get value from address " << *p_string2;
+    // string string1 = "fdsafdsa";
+    // string *p_string2 = &string1;
+    // std::cout << string1 << " memory address " << p_string2 << " get value from address " << *p_string2;
+
+
+    int a = 5;
+    int b = 10;
+
+    std::cout << sum(&a, &b);
+
 
     return 0;
 }
