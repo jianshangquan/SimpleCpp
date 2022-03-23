@@ -4,6 +4,14 @@
 #define string std::string
 
 
+
+template <typename T>
+T maximun(T a, T b){
+    return (a > b) ? a : b;
+}
+
+
+
 int main(){
     // const array are immutable
     // const int mutiplier[] {123, 100};
@@ -157,6 +165,10 @@ int main(){
     int b = 10;
 
     std::cout << sum(&a, &b);
+
+
+
+
 
 
     return 0;
