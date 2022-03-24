@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <concepts>
 #include "another_file.cpp"
 #define string std::string
 
@@ -9,6 +10,50 @@ template <typename T>
 T maximun(T a, T b){
     return (a > b) ? a : b;
 }
+
+template <typename T, typename B>
+T mutiply(T a, B b){
+    return a;
+}
+
+
+template <typename T> T add(T a, T b){
+    return a;
+}
+
+
+
+
+
+
+
+// Template type explict type
+// Syntax 1
+template <typename T> 
+requires std::integral<T> 
+T add(T a, T b){
+    return a + b;
+}
+
+
+// Syntax 2
+template <std::integral T> T add(T a, T b){
+    return a + b;
+}
+
+
+// Syntax 3
+auto add(std::integral auto a, std::integral auto b){
+    return a + b;
+}
+
+// Syntax 4
+template <typename T> T add(T a, T b) requires std::integral<T>{
+    return a + b;
+}
+
+
+
 
 
 
@@ -164,7 +209,7 @@ int main(){
     int a = 5;
     int b = 10;
 
-    std::cout << sum(&a, &b);
+    std::cout << "the result is : " << sum(&a, &b) << std::endl;
 
 
 
