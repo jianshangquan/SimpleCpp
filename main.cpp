@@ -131,6 +131,23 @@ T func(T t) requires std::integral<T> && requires (T t){
 
 
 
+
+
+
+
+// This syntax constraints the auto parameter you pass in 
+// to comply with std::integral concept
+std::integral auto add(std::integral auto a, std::integral auto b){
+    return a + b;
+}
+
+// usage
+    std::integral auto result = add(1, 4);
+// this will cause error 
+// =>  std::floating_point auto result = add(2, 4);
+
+
+
 int main(){
     // const array are immutable
     // const int mutiplier[] {123, 100};
