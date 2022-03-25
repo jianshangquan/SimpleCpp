@@ -27,6 +27,7 @@ template <typename T> T add(T a, T b){
 
 
 
+
 // Template type explict type
 // Syntax 1
 template <typename T> 
@@ -51,6 +52,42 @@ auto add(std::integral auto a, std::integral auto b){
 template <typename T> T add(T a, T b) requires std::integral<T>{
     return a + b;
 }
+
+
+
+
+
+
+// Create custom concept
+template <typename T>
+concept MyIntegral = std::is_integral_v<T>;
+
+template <typename T>
+concept Mutipliable = requires(T a, T b){
+    a * b;
+};
+
+template <typename T>
+concept Incrementable = requires(T a){
+    a=a+1;
+    ++a;
+    a++;
+};
+
+
+// Usage
+MyIntegral auto add(MyIntegral auto a, MyIntegral auto b){
+    return a + b;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -206,13 +243,15 @@ int main(){
     // std::cout << string1 << " memory address " << p_string2 << " get value from address " << *p_string2;
 
 
-    int a = 5;
-    int b = 10;
+    // int a = 5;
+    // int b = 10;
 
-    std::cout << "the result is : " << sum(&a, &b) << std::endl;
+    // std::cout << "the result is : " << sum(&a, &b) << std::endl;
 
 
 
+
+    
 
 
 
