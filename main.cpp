@@ -86,9 +86,46 @@ MyIntegral auto add(MyIntegral auto a, MyIntegral auto b){
 
 
 
+// Zoom in "require" in "concept"
+// types of "require" in cpp
+
+// 1 Simple requirement
+template <typename T>
+concept TinyType = requires(T t){
+    sizeof(T) <= 4 // check the size of "T" must be less than 4 bytes
+}
+
+// 2 Nestet requirement
+template <typename T>
+concept TinyType = requires(T t){
+    sizeof(T) <= 4 // check the size of "T" must be less than 4 bytes
+    requires sizeof(T) <= 4;
+}
+
+
+// 3 Compund requirement
+template <typename T>
+concept Addable = requires(T a, T b){
+    // noexcept is optional
+    {a + b} noexcept -> std::convertable_to<int>;
+    // check if a + b is valid syntax, doesn't throw exception(optional), 
+    // and the result is convertible to int(optional)
+}
 
 
 
+
+// combine "concept" with operator && , ||
+template <typename T>
+// T func(T t) requires std::integral<T> || std::floating_point<T>
+// T func(T t) requires std::integral<T> && std::TinyType<T>
+T func(T t) requires std::integral<T> && requires (T t){
+    sizeof(t) <= 4;
+    requires sizeof(t) <= 4;
+}{
+    std::cout << "value : " << t << std::endl;
+    return (2*t);
+}
 
 
 
